@@ -1,0 +1,6 @@
+Bibliothek Engine Alpha (Engine.Alpha.jar):
+(c) Michael Adonie
+https://engine-alpha.org/wiki/Hauptseite
+
+Lizenz: CC-BY-SA
+https://creativecommons.org/licenses/by-sa/3.0/

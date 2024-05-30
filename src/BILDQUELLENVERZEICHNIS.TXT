@@ -1,0 +1,13 @@
+Bildquelle der GIF-Animationen Figur "Traveler"
+Zeichnungen der Bewegungsphasen (c) Shutterstock/upsidesmile
+
+Enthalten in folgenden Dateien:
+traveler_idle.gif
+traveler_jump_1up.gif
+traveler_jump_2midair.gif
+traveler_jump_3down.gif
+traveler_jump_4land.gif
+traveler_run.gif
+traveler_walk.gif
+
+Bearbeitung und Erstellung der Animationen: Cornelsen/Natascha Welz
