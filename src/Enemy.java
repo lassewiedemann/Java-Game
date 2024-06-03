@@ -108,7 +108,7 @@ implements  TastenReagierbar, Ticker
             springe( 10 );
             setzeZustand( "jumpUp" );
             }
-            /**else if(code == TASTE.G)
+            /**else if(code == TASTE.Y)
             {
                 setzePosition(0, 0);
                 //System.out.println("x: "+this.M_x +" y: "+this.M_y);
