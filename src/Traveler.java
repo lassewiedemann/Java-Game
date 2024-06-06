@@ -4,7 +4,7 @@ extends     FIGUR
 implements  TastenReagierbar, Ticker
 {
     private double vX;
-    private static double v_idle=0 , v_walkR=0.05 , v_walkL=-0.05 , v_runR=0.2 , v_runL=-0.2;
+    private static double v_idle=0 , v_walkR=0.2 , v_walkL=-0.2 , v_runR=0.2 , v_runL=-0.2;
     
     
     public Traveler()
@@ -59,7 +59,7 @@ implements  TastenReagierbar, Ticker
             else if ( vX == v_walkL ) 
             { 
                 vX = v_idle;  
-                setzeZustand("idle"); 
+                setzeZustand("run"); 
             }
             else if ( vX == v_idle )  
             { 
@@ -83,7 +83,7 @@ implements  TastenReagierbar, Ticker
             else if ( vX == v_walkR ) 
             { 
                 vX = v_idle;
-                setzeZustand( "idle" );
+                setzeZustand( "run" );
             }
             else if ( vX == v_idle )  
             { 
@@ -100,24 +100,14 @@ implements  TastenReagierbar, Ticker
         else if ( code == TASTE.RUNTER )
         {
             vX = v_idle;
-            setzeZustand( "idle" );
+            setzeZustand( "run" );
         }
         else if ( code == TASTE.RAUF )
         {
-            springe( 10 );
+            springe( 12 );
             setzeZustand( "jumpUp" );
         }
-        /**else if(code == TASTE.G)
-        {
-            //setzePosition(0, 0);
-            System.out.println("x: "+this.M_x +" y: "+this.M_y);
-        }
-        else if(code == TASTE.F)
-        {
-            verschiebenUm(0, 10);
-        }**/
     }
-    
     
     @Override
     public void tick()

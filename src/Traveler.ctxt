@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=Traveler
+comment1.params=
+comment1.target=Traveler()
+comment2.params=code
+comment2.target=void\ tasteLosgelassenReagieren(int)
+comment3.params=code
+comment3.target=void\ tasteReagieren(int)
+comment4.params=
+comment4.target=void\ tick()
+numComments=5

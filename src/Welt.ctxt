@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=Welt
+comment1.params=
+comment1.target=Welt()
+comment2.params=fileName
+comment2.target=void\ hintergrundSetzen(java.lang.String)
+numComments=3

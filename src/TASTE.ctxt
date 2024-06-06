@@ -1,0 +1,4 @@
+#BlueJ class context
+comment0.target=TASTE
+comment0.text=\r\n\ Aufzaehlungs-Klasse\ fuer\ die\ Tastatur-Codes\ der\ Methode\ <i>tasteReagieren(int\ code)</i>.\r\n\ \r\n\ Vermisst\ der\ Benutzer\ Tasten,\ so\ sind\ diese\ hier\ leicht\ nachzuruesten\ \:-)\r\n\ Einfach\ nach\ 'java.awt.event.KeyEvent'\ googlen,\ den\ Tastencode\ suchen\ und\ hier\ eine\ Zeile\ ergaenzen\!\r\n\ Einfacher\:\ Objekt\ von\ SPIEL\ erzeugen\ und\ Tste\ druecken\ \=\=>\ Nummer\ wird\ angezeigt\ \:-)\r\n\ \r\n\ @author\ \ \ \ \ \ \ \ \ \ mike_gans@yahoo.de\ \ and\ \ michael\ andonie\r\n\ \r\n\ @version\ \ \ \ \ \ \ \ \ 4.0\ (2019-08-07)\r\n
+numComments=1

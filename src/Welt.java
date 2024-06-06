@@ -9,14 +9,15 @@ public class Welt
     public Welt()
     {
         hintergrundSetzen("hintergrund 2.png");
-        boeden = new Boden[3];
-        boeden[0] = new Boden(17, -25,-12);  
-        boeden[1] = new Boden(1,-27, -10);
-        boeden[2] = new Boden(1,22,-10);
-        
+        boeden = new Boden[7];
+        boeden[0] = new Boden(16, -16,-13);  
+        boeden[1] = new Boden(1,-27, -10.6);
+        boeden[2] = new Boden(1,27,-10.6);
+        boeden[3] = new Boden(1,32,-8.2);
+        boeden[4] = new Boden(1,-32,-8.2);
+        boeden[5] = new Boden(1,0,0);
         //25.05.2024 Waende hinzugefuegt
-        waende = new Wand[1];
-        waende[0]= new Wand(2, 0, -10);
+        
         
         //26.05.2024 Gegner hinzugefuegt - nicht fertig
         gegner = new Enemy[1];

@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=Boden
+comment0.text=\r\n\ Klasse\ zur\ Beschreibung\ eines\ Bodens\r\n\ \r\n\ @author\ Klaus\ Reinold\r\n\ @version\ 1.0\r\n
+comment1.params=anzahlElemente\ startX\ startY
+comment1.target=Boden(int,\ double,\ double)
+comment1.text=\r\n\ Konstruktor\ f\u00FCr\ Objekte\ der\ Klasse\ Boden\r\n
+numComments=2
