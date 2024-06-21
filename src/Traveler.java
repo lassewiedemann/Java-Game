@@ -1,16 +1,17 @@
 public class Traveler 
 
 extends     FIGUR
-implements  TastenReagierbar, Ticker
+implements  TastenReagierbar, Ticker, MausKlickReagierbar
 {
     private double vX;
     private static double v_idle=0 , v_walkR=0.2 , v_walkL=-0.2 , v_runR=0.2 , v_runL=-0.2;
+    Welt welt;
     
-    
-    public Traveler()
+    public Traveler(Welt weltneu)
     {
         // Zustand "idle"
         super( "idle" , "traveler_idle.gif" );
+        welt = weltneu;
         setzeAnimationsgeschwindigkeit( "idle", 0.2 );
         
         super.setzeMittelpunkt(-10,0);
@@ -49,8 +50,7 @@ implements  TastenReagierbar, Ticker
     @Override
     public void tasteReagieren( int code )
     {
-       
-       if ( code == TASTE.RECHTS )
+        if ( code == TASTE.RECHTS )
         {
             if ( vX == v_runL )  
             { 
@@ -111,18 +111,25 @@ implements  TastenReagierbar, Ticker
     }
     
     @Override
+    public void klickReagieren( double x , double y ) 
+    {
+        //System.out.println( "Klick bei (" + x  + ", " + y + ")." );
+        
+        for(int i = 0; i < welt.gegner.length; i++){
+            double range = Math.sqrt(Math.pow(this.berechneAbstandX(welt.gegner[i]), 2) + Math.pow(this.berechneAbstandY(welt.gegner[i]), 2));
+            if(range <= 5 && welt.gegner[i].beinhaltetPunkt(x, y)){
+                welt.gegner[i].entfernen();
+            }
+        }
+        
+        
+        
+    }
+    
+    @Override
     public void tick()
     {
-        if (vX < 0 && M_x <= -24 || vX >0 && M_x >= 24)
-        {
-           
-        }
-        else
-        {
-            verschiebenUm( this.vX , 0 );
-        }
-    
-      
+        verschiebenUm( this.vX , 0 );
         if ( nenneAktuellenZustand() == "jumpUp" && nenneGeschwindigkeitY()<0 )
         {
             super.setzeZustand( "jumpTurn" );

@@ -5,16 +5,18 @@ implements  TastenReagierbar, Ticker
 {
     private double vX;
     private static double v_idle=0 , v_walkR=0.05 , v_walkL=-0.05 , v_runR=0.2 , v_runL=-0.2;
+    Welt welt;
     
-    
-    public Enemy(int spawnX, int spawnY)
+    public Enemy(int spawnX, int spawnY, Welt weltneu)
     {
         // Zustand "idle"
         super( "idle" , "traveler_idle.gif" );
+        welt = weltneu;
         setzeAnimationsgeschwindigkeit( "idle", 0.2 );
         
         super.setzeMittelpunkt(-10,0);
         super.macheAktiv();
+        
         vX = v_idle;
         super.fuegeZustandVonGifHinzu( "walk", "traveler_walk.gif" );
         super.setzeAnimationsgeschwindigkeit( "walk", 0.2 );
@@ -37,6 +39,7 @@ implements  TastenReagierbar, Ticker
         verschiebenUm(5, 0);
         starteTickerNeu( 0.04 );                   
     }
+    
      @Override
     public void tasteLosgelassenReagieren(int code)
     {
@@ -118,7 +121,6 @@ implements  TastenReagierbar, Ticker
                 verschiebenUm(0, 10);
             }**/
     }
-    
     
     @Override
     public void tick()

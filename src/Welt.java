@@ -1,14 +1,16 @@
 public class Welt 
 {
-    Wand[] waende;
-    Boden[] boeden;
-    Boden2[] boeden2;
-    Traveler spielfigur;
-    Enemy[] gegner;
-    FIGUR hintergrund;
+    public Wand[] waende;
+    public Boden[] boeden;
+    public Boden2[] boeden2;
+    public Traveler spielfigur;
+    public Enemy[] gegner;
+    public FIGUR hintergrund;
     
     public Welt()
     {
+        
+        
         hintergrundSetzen("hintergrund 2.png");
         boeden = new Boden[7];
         boeden[0] = new Boden(16, -16,-13);  
@@ -28,10 +30,12 @@ public class Welt
         
         //26.05.2024 Gegner hinzugefuegt - nicht fertig
         gegner = new Enemy[1];
-        gegner[0] = new Enemy(5,5);
+        gegner[0] = new Enemy(5,5, this);
         
         
-        spielfigur = new Traveler();
+        
+        
+        spielfigur = new Traveler(this);
         
     }
     //Funktion um hintergrund zu aendern (hilfreich fuer evtl mehrere Level/Szenen)

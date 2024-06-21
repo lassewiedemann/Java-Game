@@ -293,7 +293,7 @@ extends Figur
      */
     public double berechneAbstandY( EduActor ea )
     {
-        return this.M_y - ea.nenneMittelpunktY();
+        return this.getActor().getPosition().getY() - ea.nenneMittelpunktY();
     }
     
     

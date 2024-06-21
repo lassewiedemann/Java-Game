@@ -1,7 +1,7 @@
 #BlueJ class context
 comment0.target=Enemy
-comment1.params=spawnX\ spawnY
-comment1.target=Enemy(int,\ int)
+comment1.params=spawnX\ spawnY\ weltneu
+comment1.target=Enemy(int,\ int,\ Welt)
 comment2.params=code
 comment2.target=void\ tasteLosgelassenReagieren(int)
 comment3.params=code
