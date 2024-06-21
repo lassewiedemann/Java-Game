@@ -20,6 +20,5 @@ public class Boden
             f.machePassiv();
         }
     }
-
   
 }
