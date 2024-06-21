@@ -49,7 +49,8 @@ implements  TastenReagierbar, Ticker
     @Override
     public void tasteReagieren( int code )
     {
-        if ( code == TASTE.RECHTS )
+       
+       if ( code == TASTE.RECHTS )
         {
             if ( vX == v_runL )  
             { 
@@ -112,7 +113,16 @@ implements  TastenReagierbar, Ticker
     @Override
     public void tick()
     {
-        verschiebenUm( this.vX , 0 );
+        if (vX < 0 && M_x <= -24 || vX >0 && M_x >= 24)
+        {
+           
+        }
+        else
+        {
+            verschiebenUm( this.vX , 0 );
+        }
+    
+      
         if ( nenneAktuellenZustand() == "jumpUp" && nenneGeschwindigkeitY()<0 )
         {
             super.setzeZustand( "jumpTurn" );
