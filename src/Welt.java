@@ -6,7 +6,7 @@ public class Welt
     public Traveler spielfigur;
     public Enemy[] gegner;
     public FIGUR hintergrund;
-    //public Lebensanzeige HealthBar;
+    public Lebensanzeige HealthBar;
     
     public Welt()
     {
@@ -30,7 +30,7 @@ public class Welt
         gegner[0] = new Enemy(5,5, this);
         
         spielfigur = new Traveler(this);
-        //HealthBar = new Lebensanzeige(this);
+        HealthBar = new Lebensanzeige(this);
     }
     //Funktion um hintergrund zu aendern (hilfreich fuer evtl mehrere Level/Szenen)
     public void hintergrundSetzen(String fileName){
