@@ -145,6 +145,13 @@ implements  TastenReagierbar, Ticker
                 super.setzeZustand( "idle" );
             }
         }
+        
+        if(this.beruehrt(welt.spielfigur)){
+            //welt.spielfigur.setvX(-welt.spielfigur.getvX());
+            verschiebenUm( -this.vX , 0 );
+            welt.spielfigur.zieheLebenAb();
+        }
+        
     }
 }
 

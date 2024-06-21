@@ -6,6 +6,7 @@ public class Welt
     public Traveler spielfigur;
     public Enemy[] gegner;
     public FIGUR hintergrund;
+    //public Lebensanzeige HealthBar;
     
     public Welt()
     {
@@ -25,18 +26,11 @@ public class Welt
         boeden2[2]= new Boden2 (4,18,0);
         boeden2[3]= new Boden2 (4,-25,0);
         
-        //25.05.2024 Waende hinzugefuegt
-        
-        
-        //26.05.2024 Gegner hinzugefuegt - nicht fertig
         gegner = new Enemy[1];
         gegner[0] = new Enemy(5,5, this);
         
-        
-        
-        
         spielfigur = new Traveler(this);
-        
+        //HealthBar = new Lebensanzeige(this);
     }
     //Funktion um hintergrund zu aendern (hilfreich fuer evtl mehrere Level/Szenen)
     public void hintergrundSetzen(String fileName){

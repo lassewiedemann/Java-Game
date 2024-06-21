@@ -1,4 +1,4 @@
-import java.awt.*;
+/**import java.awt.*;
 import javax.swing.*;
 
 public class HealthBar
@@ -33,6 +33,4 @@ extends Traveler
     public int getLives() {
         return leben;
     }
-}
-
-      
+}**/

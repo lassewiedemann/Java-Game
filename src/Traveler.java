@@ -5,6 +5,7 @@ implements  TastenReagierbar, Ticker, MausKlickReagierbar
 {
     private double vX;
     private static double v_idle=0 , v_walkR=0.2 , v_walkL=-0.2 , v_runR=0.2 , v_runL=-0.2;
+    private int health;
     Welt welt;
     
     public Traveler(Welt weltneu)
@@ -34,7 +35,9 @@ implements  TastenReagierbar, Ticker, MausKlickReagierbar
         
         super.setzeAutomatischenUebergang( "jumpTurn", "jumpDown" );
         
-        starteTickerNeu( 0.04 );                   
+        starteTickerNeu( 0.04 );
+        
+        health = 3;
     }
      @Override
     public void tasteLosgelassenReagieren(int code)
@@ -113,14 +116,6 @@ implements  TastenReagierbar, Ticker, MausKlickReagierbar
     @Override
     public void klickReagieren( double x , double y ) 
     {
-        if (vX < 0 && M_x <= -24 || vX >0 && M_x >= 24)
-        {
-           
-        }
-        else
-        {
-            verschiebenUm( this.vX , 0 );
-        }
         //System.out.println( "Klick bei (" + x  + ", " + y + ")." );
         
         for(int i = 0; i < welt.gegner.length; i++){
@@ -157,6 +152,31 @@ implements  TastenReagierbar, Ticker, MausKlickReagierbar
                 super.setzeZustand( "idle" );
             }
         }
+        if (vX < 0 && M_x <= -24 || vX >0 && M_x >= 24)
+        {
+           
+        }
+        else
+        {
+            verschiebenUm( this.vX , 0 );
+        }
     }
+    
+    public int getHealth(){
+        return  health;
+    }
+    
+    public void zieheLebenAb(){
+        health--;
+    }
+    
+    public double getvX(){
+        return this.vX;
+    }
+    
+    public void setvX(double newvX){
+        this.vX = newvX;
+    }
+    
 }
 

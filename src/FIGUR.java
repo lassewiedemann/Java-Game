@@ -1,6 +1,7 @@
-
+        
 import ea.edu.*;
 import ea.actor.StatefulAnimation;
+import ea.Vector;
 
 /**
  * Klasse FIGUR repreasentiert eine Spielfigur, deren Grafik animiert ist. 
@@ -180,7 +181,7 @@ extends Figur
     
     /**
      * Nennt die y-Koordinate des Mittelpunkts. 
-     *
+     *  
      * @return   y-Koordinate des Mittelpunkts
      */
     public double nenneMy()
@@ -188,6 +189,9 @@ extends Figur
         return this.M_y;
     }
     
+    public Vector nennePosition(){
+        return this.getActor().getPosition();  
+    }
     
     /**
      * Setzt die Figur sichtbar oder unsichtbar. 
