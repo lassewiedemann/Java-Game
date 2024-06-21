@@ -113,6 +113,14 @@ implements  TastenReagierbar, Ticker, MausKlickReagierbar
     @Override
     public void klickReagieren( double x , double y ) 
     {
+        if (vX < 0 && M_x <= -24 || vX >0 && M_x >= 24)
+        {
+           
+        }
+        else
+        {
+            verschiebenUm( this.vX , 0 );
+        }
         //System.out.println( "Klick bei (" + x  + ", " + y + ")." );
         
         for(int i = 0; i < welt.gegner.length; i++){
