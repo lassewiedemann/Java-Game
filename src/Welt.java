@@ -38,7 +38,7 @@ public class Welt
         spielfigur = new Traveler(this);
         HealthBar = new Lebensanzeige(this);
         
-        text = new TEXT(-20, 10, 2, "" + spielfigur.score);
+        text = new TEXT(-20, 10, 2, "Score: " + spielfigur.score);
         text1 = new TEXT(0, 0, 4, "GAME OVER");
         text1.setzeSichtbar(false);
         

@@ -19,19 +19,19 @@ implements  TastenReagierbar, Ticker
         super.macheAktiv();
         
         vX = v_idle;
-        super.fuegeZustandVonGifHinzu( "walk", "traveler_walk.gif" );
+        super.fuegeZustandVonGifHinzu( "walk", "Geist.gif" );
         super.setzeAnimationsgeschwindigkeit( "walk", 0.2 );
                                             
-        super.fuegeZustandVonGifHinzu( "run", "traveler_run.gif" );
+        super.fuegeZustandVonGifHinzu( "run", "Geist.gif" );
         super.setzeAnimationsgeschwindigkeit( "run", 0.1 );
         
-        super.fuegeZustandVonGifHinzu( "jumpUp", "traveler_jump_1up.gif" );
+        super.fuegeZustandVonGifHinzu( "jumpUp", "Geist.gif" );
         super.setzeAnimationsgeschwindigkeit( "jumpUp", 0.1 );
  
-        super.fuegeZustandVonGifHinzu( "jumpTurn", "traveler_jump_2midair.gif" );
+        super.fuegeZustandVonGifHinzu( "jumpTurn", "Geist.gif" );
         super.setzeAnimationsgeschwindigkeit( "jumpTurn", 0.02 );
         
-        super.fuegeZustandVonGifHinzu( "jumpDown", "traveler_jump_3down.gif" );
+        super.fuegeZustandVonGifHinzu( "jumpDown", "Geist.gif" );
         super.setzeAnimationsgeschwindigkeit( "jumpDown", 0.1 );
         
         super.setzeAutomatischenUebergang( "jumpTurn", "jumpDown" );
@@ -75,7 +75,7 @@ implements  TastenReagierbar, Ticker
                     setzeZustand("run");
                 }
             }
-            spiegelnHorizontal( true ); 
+            spiegelnHorizontal( false ); 
         }else if(welt.spielfigur.nenneMittelpunktX() > this.nenneMittelpunktX()){
             if(berechneAbstandX(welt.spielfigur) >= 4){
                 if(vX != v_walkR){
@@ -88,7 +88,7 @@ implements  TastenReagierbar, Ticker
                     setzeZustand("run");
                 }
             }
-            spiegelnHorizontal( false ); 
+            spiegelnHorizontal( true ); 
         }
         
         if(this.berechneAbstandX(welt.spielfigur) <= 6 && this.berechneAbstandX(welt.spielfigur) >= 3 && this.nenneMittelpunktY() < welt.spielfigur.nenneMittelpunktY()){
