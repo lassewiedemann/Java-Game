@@ -5,7 +5,7 @@ implements  TastenReagierbar, Ticker
 {
     private int damageTick;
     private double vX;
-    private static double v_idle=0 , v_walkR=0.05 , v_walkL=-0.05 , v_runR=0.2 , v_runL=-0.2;
+    private static double v_idle=0 , v_walkR=0.1 , v_walkL=-0.1 , v_runR=0.2 , v_runL=-0.2;
     Welt welt;
     
     public Enemy(int spawnX, int spawnY, Welt weltneu)
@@ -55,80 +55,46 @@ implements  TastenReagierbar, Ticker
     @Override
     public void tasteReagieren( int code )
     {
-        /**if ( code == TASTE.RECHTS )
-        {
-            if ( vX == v_runL )  
-            { 
-                vX = v_walkL; 
-                setzeZustand("run"); 
-            }
-            else if ( vX == v_walkL ) 
-            { 
-                vX = v_idle;  
-                setzeZustand("idle"); 
-            }
-            else if ( vX == v_idle )  
-            { 
-                vX = v_walkR; 
-                setzeZustand("run"); 
-                spiegelnHorizontal( false ); 
-            }
-            else if ( vX == v_walkR ) 
-            { 
-                vX = v_runR; 
-                setzeZustand("run");
-            }
-        }
-        else if ( code == TASTE.LINKS )
-        {
-            if ( vX == v_runR )  
-            { 
-                vX = v_walkR;
-                setzeZustand( "run" );
-            }
-            else if ( vX == v_walkR ) 
-            { 
-                vX = v_idle;
-                setzeZustand( "idle" );
-            }
-            else if ( vX == v_idle )  
-            { 
-                vX = v_walkL;
-                setzeZustand( "run" );
-                spiegelnHorizontal( true ); 
-            }
-            else if ( this.vX == v_walkL ) 
-            { 
-                vX = v_runL; 
-                setzeZustand( "run" );
-            }
-        }
-        else if ( code == TASTE.RUNTER )
-        {
-            vX = v_idle;
-            setzeZustand( "idle" );
-        }
-        else if ( code == TASTE.RAUF )
-        {
-            springe( 10 );
-            setzeZustand( "jumpUp" );
-            }
-            else if(code == TASTE.Y)
-            {
-                setzePosition(0, 0);
-                //System.out.println("x: "+this.M_x +" y: "+this.M_y);
-            }
-            else if(code == TASTE.F)
-            {
-                verschiebenUm(0, 10);
-            }**/
             return;
     }
     
     @Override
     public void tick()
-    {        
+    {
         verschiebenUm( this.vX , 0 );
+        
+        if(welt.spielfigur.nenneMittelpunktX() < this.nenneMittelpunktX()){
+            if(berechneAbstandX(welt.spielfigur) >= 4){
+                if(vX != v_walkL){
+                    vX = v_walkL;
+                    setzeZustand("walk");
+                }
+            }else{
+                if(vX != v_runL){
+                    vX = v_runL;
+                    setzeZustand("run");
+                }
+            }
+            spiegelnHorizontal( true ); 
+        }else if(welt.spielfigur.nenneMittelpunktX() > this.nenneMittelpunktX()){
+            if(berechneAbstandX(welt.spielfigur) >= 4){
+                if(vX != v_walkR){
+                    vX = v_walkR;
+                    setzeZustand("walk");
+                }
+            }else{
+                if(vX != v_runR){
+                    vX = v_runR;
+                    setzeZustand("run");
+                }
+            }
+            spiegelnHorizontal( false ); 
+        }
+        
+        if(this.berechneAbstandX(welt.spielfigur) <= 6 && this.berechneAbstandX(welt.spielfigur) >= 3 && this.nenneMittelpunktY() < welt.spielfigur.nenneMittelpunktY()){
+            springe( 5 );
+            setzeZustand( "jumpUp" );
+        }
         
         if ( nenneAktuellenZustand() == "jumpUp" && nenneGeschwindigkeitY()<0 )
         {
@@ -153,7 +119,7 @@ implements  TastenReagierbar, Ticker
         damageTick++;
         if(damageTick % 25 == 0){
             //System.out.println(damageTick);
-            if(this.beruehrt(welt.spielfigur)){
+            if(this.beruehrt(welt.spielfigur) || this.beruehrt(welt.HealthBar)){
                 if(welt.spielfigur.getvX() < 0){
                     //welt.spielfigur.setvX(0.2);
                     verschiebenUm(-1, 0);

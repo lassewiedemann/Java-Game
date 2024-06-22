@@ -263,7 +263,7 @@ implements TastenReagierbar, Ticker, MausKlickReagierbar, MausRadReagierbar, Bil
     @Override
     public void tasteReagieren( int taste ) 
     {
-        System.out.println( "Taste mit Kuerzel " + taste + " wurde gedrueckt" );
+        //System.out.println( "Taste mit Kuerzel " + taste + " wurde gedrueckt" );
     }
     
     
@@ -305,7 +305,7 @@ implements TastenReagierbar, Ticker, MausKlickReagierbar, MausRadReagierbar, Bil
     @Override
     public void klickReagieren( double x , double y ) 
     {
-        System.out.println( "Klick bei (" + x  + ", " + y + ")." );
+        //System.out.println( "Klick bei (" + x  + ", " + y + ")." );
     }
     
     
@@ -331,7 +331,7 @@ implements TastenReagierbar, Ticker, MausKlickReagierbar, MausRadReagierbar, Bil
      */
     @Override
     public void mausRadReagieren(double drehung) {
-        System.out.println("Mausrad wurde um " + drehung + " gedreht");
+        //System.out.println("Mausrad wurde um " + drehung + " gedreht");
     }
     
     

@@ -17,8 +17,6 @@ public class Welt
     
     public Welt()
     {
-        int randomX = getRandomCoordinate(-25, 25);
-        int randomY = getRandomCoordinate(-12, 12);
         
         hintergrundSetzen("hintergrund 2.png");
         boeden = new Boden[7];
@@ -34,8 +32,7 @@ public class Welt
         boeden2[2]= new Boden2 (4,18,0);
         boeden2[3]= new Boden2 (4,-25,0);   
         
-        gegner = new Enemy[1024];
-        //gegner[0] = new Enemy(randomX, randomY, this);
+        gegner = new Enemy[4096];
         gegnerCount = 0;
         
         spielfigur = new Traveler(this);
@@ -49,10 +46,9 @@ public class Welt
     }
     
     public void spawngegner(){
-        random = generator.nextInt(4)+2;
+        random = generator.nextInt(4)+3;
         for (int i = 0; i < random; i++){
-            gegner[gegnerCount + i] = new Enemy(getRandomCoordinate(-25, 25), getRandomCoordinate(-12, 12), this);
-            System.out.println(gegnerCount + i);
+            gegner[gegnerCount + i] = new Enemy(getRandomCoordinate(-25, 25), getRandomCoordinate(-12, 9), this);
         }
         gegnerCount += random;
     }

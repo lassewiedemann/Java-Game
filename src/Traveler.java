@@ -8,6 +8,7 @@ implements  TastenReagierbar, Ticker, MausKlickReagierbar
     private int health, spawnTick;
     Welt welt;
     public int score;
+    public boolean gameOver;
     
     public Traveler(Welt weltneu)
     {
@@ -41,6 +42,8 @@ implements  TastenReagierbar, Ticker, MausKlickReagierbar
         health = 3;
         score = 0;
         spawnTick = 0;
+        
+        gameOver = false;
     }
      @Override
     public void tasteLosgelassenReagieren(int code)
@@ -132,11 +135,6 @@ implements  TastenReagierbar, Ticker, MausKlickReagierbar
             double a2b2 = Math.pow(sumAbstandX, 2) + Math.pow(sumAbstandY, 2);
             double range = Math.sqrt(a2b2);
             
-            System.out.println(sumAbstandX);
-            System.out.println(sumAbstandY);
-            
-            System.out.println(range);
-            
             if(range <= 5 && welt.gegner[i].beinhaltetPunkt(x, y)){
                 welt.gegner[i].setzeSichtbar(false);
                 welt.gegner[i].verschiebenUm(0, -1000);
@@ -152,6 +150,9 @@ implements  TastenReagierbar, Ticker, MausKlickReagierbar
     @Override
     public void tick()
     {   
+        if(gameOver)
+            return;
+        
         if (vX < 0 && M_x <= -24 || vX >0 && M_x >= 24)
         {
            
@@ -180,9 +181,8 @@ implements  TastenReagierbar, Ticker, MausKlickReagierbar
             }
         }
         
-        if(health <= 0){
+        if(health <= 0 && !gameOver){
            GameOver();
-           welt.text1.setzeSichtbar(true);
         }
         
         spawnTick++;
@@ -192,11 +192,13 @@ implements  TastenReagierbar, Ticker, MausKlickReagierbar
     }
     
     public void GameOver(){
-        //welt.spielfigur.entfernen();
-        //welt.HealthBar.entfernen();
-        //for(int i = 0; i < welt.gegner.length; i++){
-        //    welt.gegner[i].entfernen();
-        //}
+        gameOver = true;
+        welt.spielfigur.verschiebenUm(0, -100);
+        welt.HealthBar.verschiebenUm(0, -100);
+        for(int i = 0; i < welt.gegnerCount; i++){
+            welt.gegner[i].verschiebenUm(0, -100);
+        }
+        welt.text1.setzeSichtbar(true);
     }
     
     public int getHealth(){
