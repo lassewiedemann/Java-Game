@@ -145,7 +145,15 @@ implements  TastenReagierbar, Ticker, MausKlickReagierbar
     @Override
     public void tick()
     {
-        verschiebenUm( this.vX , 0 );
+        if (vX < 0 && M_x <= -24 || vX >0 && M_x >= 24)
+        {
+           
+        }
+        else
+        {
+            verschiebenUm( this.vX , 0 );
+        }
+        
         if ( nenneAktuellenZustand() == "jumpUp" && nenneGeschwindigkeitY()<0 )
         {
             super.setzeZustand( "jumpTurn" );
@@ -165,14 +173,7 @@ implements  TastenReagierbar, Ticker, MausKlickReagierbar
                 super.setzeZustand( "idle" );
             }
         }
-        //if (vX < 0 && M_x <= -24 || vX >0 && M_x >= 24)
-        //{
-           
-        //}
-        //else
-        //{
-        //    verschiebenUm( this.vX , 0 );
-        //}
+        
         if(health <= 0){
            // for
         }

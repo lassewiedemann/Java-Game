@@ -9,7 +9,6 @@ implements  Ticker
     {
         // Zustand "idle"
         super( "idle" , "health3.gif" );
-    ;
         
         super.setzeMittelpunkt(0,0);
         super.machePassiv();

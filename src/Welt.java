@@ -3,7 +3,7 @@ public class Welt
     public Wand[] waende;
     public Boden[] boeden;
     public Boden2[] boeden2;
-    public Wand[] wand;
+    //public Wand[] wand;
     public Traveler spielfigur;
     public Enemy[] gegner;
     public FIGUR hintergrund;
@@ -27,9 +27,9 @@ public class Welt
         boeden2[2]= new Boden2 (4,18,0);
         boeden2[3]= new Boden2 (4,-25,0);
         
-        wand = new Wand[2];
-        wand[0] = new Wand(15, -25, -10);
-        wand[1] = new Wand(15, 25, -10);
+        //wand = new Wand[2];
+        //wand[0] = new Wand(15, -25, -10);
+        //wand[1] = new Wand(15, 25, -10);
         
         gegner = new Enemy[1];
         gegner[0] = new Enemy(5,5, this);
