@@ -36,8 +36,7 @@ implements  TastenReagierbar, Ticker
         
         super.setzeAutomatischenUebergang( "jumpTurn", "jumpDown" );
         
-        //setzePosition(spawnX, spawnY);
-        verschiebenUm(5, 0);
+        setzePosition(spawnX, spawnY);
         starteTickerNeu( 0.04 );
         
         damageTick = 0;

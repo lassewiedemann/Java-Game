@@ -2,6 +2,10 @@
 comment0.target=Welt
 comment1.params=
 comment1.target=Welt()
-comment2.params=fileName
-comment2.target=void\ hintergrundSetzen(java.lang.String)
-numComments=3
+comment2.params=
+comment2.target=void\ spawngegner()
+comment3.params=min\ max
+comment3.target=int\ getRandomCoordinate(int,\ int)
+comment4.params=fileName
+comment4.target=void\ hintergrundSetzen(java.lang.String)
+numComments=5

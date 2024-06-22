@@ -5,8 +5,9 @@ implements  TastenReagierbar, Ticker, MausKlickReagierbar
 {
     private double vX;
     private static double v_idle=0 , v_walkR=0.2 , v_walkL=-0.2 , v_runR=0.2 , v_runL=-0.2;
-    private int health;
+    private int health, spawnTick;
     Welt welt;
+    public int score;
     
     public Traveler(Welt weltneu)
     {
@@ -38,6 +39,8 @@ implements  TastenReagierbar, Ticker, MausKlickReagierbar
         starteTickerNeu( 0.04 );
         
         health = 3;
+        score = 0;
+        spawnTick = 0;
     }
      @Override
     public void tasteLosgelassenReagieren(int code)
@@ -116,9 +119,10 @@ implements  TastenReagierbar, Ticker, MausKlickReagierbar
     @Override
     public void klickReagieren( double x , double y ) 
     {
+        
         //System.out.println( "Klick bei (" + x  + ", " + y + ")." );
         
-        for(int i = 0; i < welt.gegner.length; i++){
+        for(int i = 0; i < welt.gegnerCount; i++){
             double abstandX = this.berechneAbstandX(welt.gegner[i]);
             double abstandY = this.berechneAbstandY(welt.gegner[i]);
             
@@ -134,7 +138,10 @@ implements  TastenReagierbar, Ticker, MausKlickReagierbar
             System.out.println(range);
             
             if(range <= 5 && welt.gegner[i].beinhaltetPunkt(x, y)){
-                welt.gegner[i].entfernen();
+                welt.gegner[i].setzeSichtbar(false);
+                welt.gegner[i].verschiebenUm(0, -1000);
+                score++;
+                welt.text.setzeInhalt("Score: " + score);
             }
         }
         
@@ -144,7 +151,7 @@ implements  TastenReagierbar, Ticker, MausKlickReagierbar
     
     @Override
     public void tick()
-    {
+    {   
         if (vX < 0 && M_x <= -24 || vX >0 && M_x >= 24)
         {
            
@@ -153,7 +160,6 @@ implements  TastenReagierbar, Ticker, MausKlickReagierbar
         {
             verschiebenUm( this.vX , 0 );
         }
-        
         if ( nenneAktuellenZustand() == "jumpUp" && nenneGeschwindigkeitY()<0 )
         {
             super.setzeZustand( "jumpTurn" );
@@ -175,8 +181,22 @@ implements  TastenReagierbar, Ticker, MausKlickReagierbar
         }
         
         if(health <= 0){
-           // for
+           GameOver();
+           welt.text1.setzeSichtbar(true);
         }
+        
+        spawnTick++;
+        if (spawnTick % 175 == 0){
+            welt.spawngegner();
+        }
+    }
+    
+    public void GameOver(){
+        //welt.spielfigur.entfernen();
+        //welt.HealthBar.entfernen();
+        //for(int i = 0; i < welt.gegner.length; i++){
+        //    welt.gegner[i].entfernen();
+        //}
     }
     
     public int getHealth(){

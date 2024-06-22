@@ -1,17 +1,24 @@
-public class Welt 
+import java.util.Random;
+
+public class Welt
 {
     public Wand[] waende;
     public Boden[] boeden;
     public Boden2[] boeden2;
-    //public Wand[] wand;
     public Traveler spielfigur;
     public Enemy[] gegner;
     public FIGUR hintergrund;
     public Lebensanzeige HealthBar;
+    public TEXT text;
+    public TEXT text1;
+    public int gegnerCount;
+    private Random generator;
+    public int random;
     
     public Welt()
     {
-        
+        int randomX = getRandomCoordinate(-25, 25);
+        int randomY = getRandomCoordinate(-12, 12);
         
         hintergrundSetzen("hintergrund 2.png");
         boeden = new Boden[7];
@@ -25,18 +32,36 @@ public class Welt
         boeden2[0] =new Boden2(3,-8,-4);
         boeden2[1] = new Boden2(3,5,-4);
         boeden2[2]= new Boden2 (4,18,0);
-        boeden2[3]= new Boden2 (4,-25,0);
+        boeden2[3]= new Boden2 (4,-25,0);   
         
-        //wand = new Wand[2];
-        //wand[0] = new Wand(15, -25, -10);
-        //wand[1] = new Wand(15, 25, -10);
-        
-        gegner = new Enemy[1];
-        gegner[0] = new Enemy(5,5, this);
+        gegner = new Enemy[1024];
+        //gegner[0] = new Enemy(randomX, randomY, this);
+        gegnerCount = 0;
         
         spielfigur = new Traveler(this);
         HealthBar = new Lebensanzeige(this);
+        
+        text = new TEXT(-20, 10, 2, "" + spielfigur.score);
+        text1 = new TEXT(0, 0, 4, "GAME OVER");
+        text1.setzeSichtbar(false);
+        
+        generator = new Random();
     }
+    
+    public void spawngegner(){
+        random = generator.nextInt(4)+2;
+        for (int i = 0; i < random; i++){
+            gegner[gegnerCount + i] = new Enemy(getRandomCoordinate(-25, 25), getRandomCoordinate(-12, 12), this);
+            System.out.println(gegnerCount + i);
+        }
+        gegnerCount += random;
+    }
+    
+    private int getRandomCoordinate(int min, int max) {
+        Random random = new Random();
+        return random.nextInt(max - min + 1) + min;
+    }
+    
     //Funktion um hintergrund zu aendern (hilfreich fuer evtl mehrere Level/Szenen)
     public void hintergrundSetzen(String fileName){
         FIGUR hintergrund = new FIGUR( fileName );

@@ -13,9 +13,9 @@ class meinSpiel extends SPIEL
             
         }
         // Erlaubt Kamerazoom als Positionierungshilfe
-        this.setzeErkundungsmodusAktiv(true);
+        //this.setzeErkundungsmodusAktiv(true);
         
         //Koordinatensystem fuer Leveldesign
-        this.zeigeKoordinatensystem(true);
+        //this.zeigeKoordinatensystem(true);
     }
 }
