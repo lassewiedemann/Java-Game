@@ -283,7 +283,7 @@ extends Figur
      */
     public double berechneAbstandX( EduActor ea )
     {
-        return this.M_x - ea.nenneMittelpunktX();
+        return this.getActor().getCenter().getX () - ea.nenneMittelpunktX();
     }
     
     
@@ -296,8 +296,8 @@ extends Figur
      * @return  Abstand (in Pixeln) dieses Rechtecks vom anderen Grafik-Objekt in y-Richtung (>0, wenn dieses Rechteck unterhalb des anderen Grafik-Objekts liegt)
      */
     public double berechneAbstandY( EduActor ea )
-    {
-        return this.getActor().getPosition().getY() - ea.nenneMittelpunktY();
+    {   
+        return this.getActor().getCenter().getY() - ea.nenneMittelpunktY();
     }
     
     

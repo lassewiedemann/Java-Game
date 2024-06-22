@@ -3,6 +3,7 @@ public class Enemy
 extends     FIGUR
 implements  TastenReagierbar, Ticker
 {
+    private int damageTick;
     private double vX;
     private static double v_idle=0 , v_walkR=0.05 , v_walkL=-0.05 , v_runR=0.2 , v_runL=-0.2;
     Welt welt;
@@ -37,7 +38,9 @@ implements  TastenReagierbar, Ticker
         
         //setzePosition(spawnX, spawnY);
         verschiebenUm(5, 0);
-        starteTickerNeu( 0.04 );                   
+        starteTickerNeu( 0.04 );
+        
+        damageTick = 0;
     }
     
      @Override
@@ -53,7 +56,7 @@ implements  TastenReagierbar, Ticker
     @Override
     public void tasteReagieren( int code )
     {
-        if ( code == TASTE.RECHTS )
+        /**if ( code == TASTE.RECHTS )
         {
             if ( vX == v_runL )  
             { 
@@ -111,7 +114,7 @@ implements  TastenReagierbar, Ticker
             springe( 10 );
             setzeZustand( "jumpUp" );
             }
-            /**else if(code == TASTE.Y)
+            else if(code == TASTE.Y)
             {
                 setzePosition(0, 0);
                 //System.out.println("x: "+this.M_x +" y: "+this.M_y);
@@ -120,12 +123,14 @@ implements  TastenReagierbar, Ticker
             {
                 verschiebenUm(0, 10);
             }**/
+            return;
     }
     
     @Override
     public void tick()
     {
         verschiebenUm( this.vX , 0 );
+        
         if ( nenneAktuellenZustand() == "jumpUp" && nenneGeschwindigkeitY()<0 )
         {
             super.setzeZustand( "jumpTurn" );
@@ -146,10 +151,14 @@ implements  TastenReagierbar, Ticker
             }
         }
         
-        if(this.beruehrt(welt.spielfigur)){
-            //welt.spielfigur.setvX(-welt.spielfigur.getvX());
-            verschiebenUm( -this.vX , 0 );
-            welt.spielfigur.zieheLebenAb();
+        damageTick++;
+        if(damageTick % 25 == 0){
+            //System.out.println(damageTick);
+            if(this.beruehrt(welt.spielfigur)){
+                //welt.spielfigur.setvX(-welt.spielfigur.getvX());
+                welt.spielfigur.verschiebenUm( -this.vX , 0 );
+                welt.spielfigur.zieheLebenAb();
+            }
         }
         
     }

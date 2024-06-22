@@ -119,7 +119,20 @@ implements  TastenReagierbar, Ticker, MausKlickReagierbar
         //System.out.println( "Klick bei (" + x  + ", " + y + ")." );
         
         for(int i = 0; i < welt.gegner.length; i++){
-            double range = Math.sqrt(Math.pow(this.berechneAbstandX(welt.gegner[i]), 2) + Math.pow(this.berechneAbstandY(welt.gegner[i]), 2));
+            double abstandX = this.berechneAbstandX(welt.gegner[i]);
+            double abstandY = this.berechneAbstandY(welt.gegner[i]);
+            
+            double sumAbstandX = Math.abs(abstandX);
+            double sumAbstandY = Math.abs(abstandY);
+            
+            double a2b2 = Math.pow(sumAbstandX, 2) + Math.pow(sumAbstandY, 2);
+            double range = Math.sqrt(a2b2);
+            
+            System.out.println(sumAbstandX);
+            System.out.println(sumAbstandY);
+            
+            System.out.println(range);
+            
             if(range <= 5 && welt.gegner[i].beinhaltetPunkt(x, y)){
                 welt.gegner[i].entfernen();
             }
