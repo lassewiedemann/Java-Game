@@ -128,7 +128,7 @@ implements  TastenReagierbar, Ticker
     
     @Override
     public void tick()
-    {
+    {        
         verschiebenUm( this.vX , 0 );
         
         if ( nenneAktuellenZustand() == "jumpUp" && nenneGeschwindigkeitY()<0 )
@@ -155,12 +155,18 @@ implements  TastenReagierbar, Ticker
         if(damageTick % 25 == 0){
             //System.out.println(damageTick);
             if(this.beruehrt(welt.spielfigur)){
-                //welt.spielfigur.setvX(-welt.spielfigur.getvX());
-                welt.spielfigur.verschiebenUm( -this.vX , 0 );
+                if(welt.spielfigur.getvX() < 0){
+                    //welt.spielfigur.setvX(0.2);
+                    verschiebenUm(-1, 0);
+                }else {
+                    //welt.spielfigur.setvX(-0.2);
+                    verschiebenUm(1, 0);
+                }
+                //welt.spielfigur.tasteLosgelassenReagieren(java.awt.event.KeyEvent.VK_D);
                 welt.spielfigur.zieheLebenAb();
             }
         }
-        
     }
+    
 }
 

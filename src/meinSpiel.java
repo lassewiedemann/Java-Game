@@ -17,6 +17,5 @@ class meinSpiel extends SPIEL
         
         //Koordinatensystem fuer Leveldesign
         this.zeigeKoordinatensystem(true);
-        //Wurstbrot
     }
 }

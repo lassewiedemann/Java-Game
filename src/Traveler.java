@@ -165,13 +165,16 @@ implements  TastenReagierbar, Ticker, MausKlickReagierbar
                 super.setzeZustand( "idle" );
             }
         }
-        if (vX < 0 && M_x <= -24 || vX >0 && M_x >= 24)
-        {
+        //if (vX < 0 && M_x <= -24 || vX >0 && M_x >= 24)
+        //{
            
-        }
-        else
-        {
-            verschiebenUm( this.vX , 0 );
+        //}
+        //else
+        //{
+        //    verschiebenUm( this.vX , 0 );
+        //}
+        if(health <= 0){
+           // for
         }
     }
     
