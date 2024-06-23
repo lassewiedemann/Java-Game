@@ -1,3 +1,17 @@
+/**
+                         _                        _            
+  /\  /\__ _ _   _ _ __ | |_    /\  /\_   _ _ __ | |_ ___ _ __ 
+ / /_/ / _` | | | | '_ \| __|  / /_/ / | | | '_ \| __/ _ \ '__|
+/ __  / (_| | |_| | | | | |_  / __  /| |_| | | | | ||  __/ |   
+\/ /_/ \__,_|\__,_|_| |_|\__| \/ /_/  \__,_|_| |_|\__\___|_|   
+                                                                     
+Datei: meinSpiel
+Fertigstellungsdatum: 23. Juni 2024
+Autoren: Lasse Wiedemann, Marinus Urch, Tilo Engelbrecht, Natasha Erhart Schlabitz, Judith Krumme
+                                                    
+*/
+
+
 class meinSpiel extends SPIEL
 {
     meinSpiel()

@@ -1,0 +1,6 @@
+#BlueJ class context
+comment0.target=Boden2
+comment0.text=\r\n\ Beschreiben\ Sie\ hier\ die\ Klasse\ Boden2.\r\n\ \r\n\ @author\ (Ihr\ Name)\ \r\n\ @version\ (eine\ Versionsnummer\ oder\ ein\ Datum)\r\n
+comment1.params=anzahlElemente\ startX\ startY
+comment1.target=Boden2(int,\ double,\ double)
+numComments=2
