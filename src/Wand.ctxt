@@ -1,7 +1,0 @@
-#BlueJ class context
-comment0.target=Wand
-comment0.text=\r\n\ Wand\r\n
-comment1.params=anzahlElemente\ startX\ startY
-comment1.target=Wand(int,\ double,\ double)
-comment1.text=\r\n\ Konstruktor\ f\u00FCr\ Objekte\ der\ Klasse\ Boden\r\n
-numComments=2

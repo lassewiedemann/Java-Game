@@ -18,7 +18,6 @@ import java.util.Random;
 
 // Öffentliche Klasse Welt
 public class Welt {
-    public Wand[] waende;  // Array von Wänden
     public Boden[] boeden;  // Array von Böden
     public Boden2[] boeden2;  // Array von weiteren Böden
     public Traveler spielfigur;  // Die Spielfigur

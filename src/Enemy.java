@@ -23,7 +23,7 @@ public class Enemy extends FIGUR implements TastenReagierbar, Ticker {
     public Enemy(int spawnX, int spawnY, Welt weltneu) {
         //----------------------------------------Konstruktor----------------------------------------//
         // Initialisierung im Zustand "idle"
-        super("idle", "traveler_idle.gif");
+        super("idle", "Geist.gif");
         welt = weltneu;
         setzeAnimationsgeschwindigkeit("idle", 0.2);
 
