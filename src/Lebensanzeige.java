@@ -25,7 +25,7 @@ implements  Ticker
         super.fuegeZustandVonGifHinzu( "0_Leben", "health0.gif" );
         super.setzeAnimationsgeschwindigkeit( "0_Leben", 1 );
         
-        starteTickerNeu( 0.04 );
+        starteTickerNeu( 0.02 );
         
         welt = weltneu;
         
@@ -37,7 +37,7 @@ implements  Ticker
     @Override
     public void tick()  
     {
-        this.setzePosition(welt.spielfigur.nennePosition().getX(), welt.spielfigur.nennePosition().getY()+3);
+        this.setzePosition(welt.spielfigur.nennePosition().getX() - .2, welt.spielfigur.nennePosition().getY() + 3.5);
         int TravelerHealth = welt.spielfigur.getHealth(); 
         if(TravelerHealth >= 3){
             setzeZustand("3_Leben");

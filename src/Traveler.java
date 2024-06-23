@@ -13,26 +13,26 @@ implements  TastenReagierbar, Ticker, MausKlickReagierbar
     public Traveler(Welt weltneu)
     {
         // Zustand "idle"
-        super( "idle" , "traveler_idle.gif" );
+        super( "idle" , "hansIdle.gif" );
         welt = weltneu;
         setzeAnimationsgeschwindigkeit( "idle", 0.2 );
         
         super.setzeMittelpunkt(-10,0);
         super.macheAktiv();
         vX = v_idle;
-        super.fuegeZustandVonGifHinzu( "walk", "traveler_walk.gif" );
+        super.fuegeZustandVonGifHinzu( "walk", "hansRun.gif" );
         super.setzeAnimationsgeschwindigkeit( "walk", 0.2 );
                                             
-        super.fuegeZustandVonGifHinzu( "run", "traveler_run.gif" );
+        super.fuegeZustandVonGifHinzu( "run", "hansRun.gif" );
         super.setzeAnimationsgeschwindigkeit( "run", 0.1 );
         
-        super.fuegeZustandVonGifHinzu( "jumpUp", "traveler_jump_1up.gif" );
+        super.fuegeZustandVonGifHinzu( "jumpUp", "hansIdle.gif" );
         super.setzeAnimationsgeschwindigkeit( "jumpUp", 0.1 );
  
-        super.fuegeZustandVonGifHinzu( "jumpTurn", "traveler_jump_2midair.gif" );
+        super.fuegeZustandVonGifHinzu( "jumpTurn", "hansIdle.gif" );
         super.setzeAnimationsgeschwindigkeit( "jumpTurn", 0.02 );
         
-        super.fuegeZustandVonGifHinzu( "jumpDown", "traveler_jump_3down.gif" );
+        super.fuegeZustandVonGifHinzu( "jumpDown", "hansIdle.gif" );
         super.setzeAnimationsgeschwindigkeit( "jumpDown", 0.1 );
         
         super.setzeAutomatischenUebergang( "jumpTurn", "jumpDown" );
@@ -42,6 +42,8 @@ implements  TastenReagierbar, Ticker, MausKlickReagierbar
         health = 3;
         score = 0;
         spawnTick = 0;
+        
+        skaliere(.3);   
         
         gameOver = false;
     }
