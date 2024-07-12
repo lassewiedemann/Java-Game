@@ -13,10 +13,10 @@ Autoren: Lasse Wiedemann, Marinus Urch, Tilo Engelbrecht, Natasha Erhart Schlabi
 
 //----------------------------------------Traveler-Klasse----------------------------------------//
 
-public class Traveler extends FIGUR implements TastenReagierbar, Ticker, MausKlickReagierbar {
-    private double vX;  // Geschwindigkeit in X-Richtung
-    private static double v_idle = 0, v_walkR = 0.2, v_walkL = -0.2, v_runR = 0.2, v_runL = -0.2;  // Geschwindigkeitskonstanten
-    private int health, spawnTick;  // Lebenspunkte und Zähler für den Spawn
+public abstract class Traveler extends FIGUR implements TastenReagierbar, Ticker, MausKlickReagierbar {
+    protected double vX;  // Geschwindigkeit in X-Richtung
+    protected static double v_idle = 0, v_walkR = 0.2, v_walkL = -0.2, v_runR = 0.2, v_runL = -0.2;  // Geschwindigkeitskonstanten
+    protected int health;  // Lebenspunkte und Zähler für den Spawn
     Welt welt;  // Referenz auf die Spielwelt
     public int score;  // Punktzahl
     public boolean gameOver;  // Spiel vorbei Flagge
@@ -56,7 +56,6 @@ public class Traveler extends FIGUR implements TastenReagierbar, Ticker, MausKli
 
         health = 3;  // Startlebenspunkte
         score = 0;  // Startpunktzahl
-        spawnTick = 0;  // Startzähler für den Spawn
 
         skaliere(.3);  // Skalierung der Figur
 
@@ -168,25 +167,30 @@ public class Traveler extends FIGUR implements TastenReagierbar, Ticker, MausKli
         if (health <= 0 && !gameOver) {
             GameOver();
         }
-
-        spawnTick++;
-
-        // Gegner spawnen basierend auf dem SpawnTick
-        if (spawnTick % 175 == 0) {
-            welt.spawngegner();
-        }
     }
 
     // Methode für das Game Over
     public void GameOver() {
         //----------------------------------------GameOver-Methode----------------------------------------//
         gameOver = true;
-        welt.spielfigur.verschiebenUm(0, -100);
-        welt.HealthBar.verschiebenUm(0, -100);
+        welt.spielfigur[0].verschiebenUm(0, -100);
+        welt.spielfigur[1].verschiebenUm(0, -100);
+        welt.HealthBar[0].verschiebenUm(0, -100);
+        welt.HealthBar[1].verschiebenUm(0, -100);
         for (int i = 0; i < welt.gegnerCount; i++) {
             welt.gegner[i].verschiebenUm(0, -100);
         }
         welt.text1.setzeSichtbar(true);
+        welt.spielfigur[0].gameOver = true;
+        welt.spielfigur[1].gameOver = true;
+        if(welt.mode == "Versus")
+        if(this instanceof Player1){
+            welt.text1.setzeInhalt("Player 2 hat gewonnen");
+            welt.text1.verschiebenUm(-7, 0);
+        }else{
+            welt.text1.setzeInhalt("Player 1 hat gewonnen");
+            welt.text1.verschiebenUm(-7, 0);
+        }
     }
 
     // Methode zum Abrufen der Lebenspunkte

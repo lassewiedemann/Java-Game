@@ -50,10 +50,15 @@ public class TASTE
     public static final int _9 = java.awt.event.KeyEvent.VK_9;
     public static final int _0 = java.awt.event.KeyEvent.VK_0;
     
-    public static final int RAUF = java.awt.event.KeyEvent.VK_SPACE;
+    public static final int ENTER = java.awt.event.KeyEvent.VK_ENTER;
+    
+    public static final int RAUF = java.awt.event.KeyEvent.VK_W;
     public static final int RUNTER = java.awt.event.KeyEvent.VK_S;
     public static final int LINKS = java.awt.event.KeyEvent.VK_A;
     public static final int RECHTS = java.awt.event.KeyEvent.VK_D;
-    public static final int LEER = java.awt.event.KeyEvent.VK_W;
-    public static final int ENTER = java.awt.event.KeyEvent.VK_E;
+    
+    public static final int RAUF2 = java.awt.event.KeyEvent.VK_UP;
+    public static final int RUNTER2 = java.awt.event.KeyEvent.VK_DOWN;
+    public static final int LINKS2 = java.awt.event.KeyEvent.VK_LEFT;
+    public static final int RECHTS2 = java.awt.event.KeyEvent.VK_RIGHT;
 }

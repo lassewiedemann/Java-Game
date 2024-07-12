@@ -1,3 +1,4 @@
+import ea.Vector;
 /**
                          _                        _            
   /\  /\__ _ _   _ _ __ | |_    /\  /\_   _ _ __ | |_ ___ _ __ 
@@ -55,6 +56,8 @@ public class Enemy extends FIGUR implements TastenReagierbar, Ticker {
         starteTickerNeu(0.04);  // Starten des Tickers mit einer Rate von 0.04
 
         damageTick = 0;  // Initialisierung des Schadenszählers
+        
+        skaliere(2);
     }
 
     // Reaktion auf losgelassene Tasten
@@ -77,13 +80,15 @@ public class Enemy extends FIGUR implements TastenReagierbar, Ticker {
     // Tick-Methode für Bewegung und Verhalten der Figur
     @Override
     public void tick() {
+        Vector closestPlayerPosition = getClosestPlayerPosition();
+        double closestPlayerDistance = getDistanceToClosestPlayer();
         //----------------------------------------tick-Methode----------------------------------------//
         verschiebenUm(this.vX, 0);  // Bewegung in X-Richtung
-
+        
         // Richtungsänderung basierend auf der Position des Spielers
-        if (welt.spielfigur.nenneMittelpunktX() < this.nenneMittelpunktX()) {
+        if (closestPlayerPosition.getX() < this.nenneMittelpunktX()) {
             //----------------------------------------Spieler ist links----------------------------------------//
-            if (berechneAbstandX(welt.spielfigur) >= 4) {
+            if (closestPlayerDistance >= 4) {
                 if (vX != v_walkL) {
                     vX = v_walkL;
                     setzeZustand("walk");
@@ -95,9 +100,9 @@ public class Enemy extends FIGUR implements TastenReagierbar, Ticker {
                 }
             }
             spiegelnHorizontal(false);  // Horizontal spiegeln
-        } else if (welt.spielfigur.nenneMittelpunktX() > this.nenneMittelpunktX()) {
+        } else if (closestPlayerPosition.getX() > this.nenneMittelpunktX()) {
             //----------------------------------------Spieler ist rechts----------------------------------------//
-            if (berechneAbstandX(welt.spielfigur) >= 4) {
+            if (closestPlayerDistance >= 4) {
                 if (vX != v_walkR) {
                     vX = v_walkR;
                     setzeZustand("walk");
@@ -112,14 +117,14 @@ public class Enemy extends FIGUR implements TastenReagierbar, Ticker {
         }
 
         // Springen, wenn bestimmte Bedingungen erfüllt sind
-        if (this.berechneAbstandX(welt.spielfigur) <= 6 && this.berechneAbstandX(welt.spielfigur) >= 3 &&
-                this.nenneMittelpunktY() < welt.spielfigur.nenneMittelpunktY()) {
+        if (closestPlayerDistance <= 6 && closestPlayerDistance >= 3 &&
+                this.nenneMittelpunktY() < closestPlayerPosition.getY()) {
             springe(5);
             setzeZustand("jumpUp");
         }
 
         // Zustandsübergang während des Sprunges
-        if (nenneAktuellenZustand() == "jumpUp" && nenneGeschwindigkeitY() < 0) {
+        if (nenneAktuellenZustand() == "jumpUp" && closestPlayerPosition.getY() < 0) {
             super.setzeZustand("jumpTurn");
         }
 
@@ -135,14 +140,49 @@ public class Enemy extends FIGUR implements TastenReagierbar, Ticker {
         // Schaden verursachen und Lebenspunkte abziehen, wenn die Figur die Spielfigur oder die HealthBar berührt
         if (damageTick % 25 == 0) {
             //----------------------------------------Schaden und Lebenspunkte----------------------------------------//
-            if (this.beruehrt(welt.spielfigur) || this.beruehrt(welt.HealthBar)) {
-                if (welt.spielfigur.getvX() < 0) {
-                    verschiebenUm(-1, 0);  // Bewegung der Spielfigur nach der Kollision nach links
-                } else {
-                    verschiebenUm(1, 0);  // Bewegung der Spielfigur nach der Kollision nach rechts
+            for(int i = 0; i < welt.spielfigur.length; i++){
+            if (this.beruehrt(welt.spielfigur[i]) || this.beruehrt(welt.HealthBar[i])) {
+                    if (welt.spielfigur[i].getvX() < 0) {
+                        verschiebenUm(-1, 0);  // Bewegung der Spielfigur nach der Kollision nach links
+                    } else {
+                        verschiebenUm(1, 0);  // Bewegung der Spielfigur nach der Kollision nach rechts
+                    }
+                    welt.spielfigur[i].zieheLebenAb();  // Lebenspunkte der Spielfigur abziehen
                 }
-                welt.spielfigur.zieheLebenAb();  // Lebenspunkte der Spielfigur abziehen
             }
         }
     }
+    
+    double getDistanceToClosestPlayer(){
+        double[] distances = new double[2];
+        for(int i=0; i<welt.spielfigur.length;i++){
+            double abstandX = this.berechneAbstandX(welt.spielfigur[i]);
+            double abstandY = this.berechneAbstandY(welt.spielfigur[i]);
+
+            double sumAbstandX = Math.abs(abstandX);
+            double sumAbstandY = Math.abs(abstandY);
+
+            double a2b2 = Math.pow(sumAbstandX, 2) + Math.pow(sumAbstandY, 2);
+            double distance = Math.sqrt(a2b2);
+            distances[i] = distance;
+        }
+        return (distances[0] < distances[1]) ? distances[0] : distances[1];
+    }
+    
+    Vector getClosestPlayerPosition(){
+        double[] distances = new double[2];
+        for(int i=0; i<welt.spielfigur.length;i++){
+            double abstandX = this.berechneAbstandX(welt.spielfigur[i]);
+            double abstandY = this.berechneAbstandY(welt.spielfigur[i]);
+
+            double sumAbstandX = Math.abs(abstandX);
+            double sumAbstandY = Math.abs(abstandY);
+
+            double a2b2 = Math.pow(sumAbstandX, 2) + Math.pow(sumAbstandY, 2);
+            double distance = Math.sqrt(a2b2);
+            distances[i] = distance;
+        }
+        return (distances[0] < distances[1]) ? welt.spielfigur[0].nenneActor().getCenter() : welt.spielfigur[1].nenneActor().getCenter();
+    }
+    
 }

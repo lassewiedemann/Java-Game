@@ -20,18 +20,20 @@ import java.util.Random;
 public class Welt {
     public Boden[] boeden;  // Array von Böden
     public Boden2[] boeden2;  // Array von weiteren Böden
-    public Traveler spielfigur;  // Die Spielfigur
+    public Traveler[] spielfigur;  // Die Spielfigur
     public Enemy[] gegner;  // Array von Gegnern
     public FIGUR hintergrund;  // Hintergrundfigur
-    public Lebensanzeige HealthBar;  // Anzeige der Lebenspunkte
+    public Lebensanzeige[] HealthBar;  // Anzeige der Lebenspunkte
     public TEXT text;  // Textobjekt für die Punkteanzeige
     public TEXT text1;  // Textobjekt für die Game Over-Anzeige
     public int gegnerCount;  // Anzahl der Gegner
     private Random generator;  // Zufallsgenerator
     public int random;  // Zufälliger Wert
+    private WorldTicker worldTicker;
+    public String mode;
 
     // Konstruktor für die Weltklasse
-    public Welt() {
+    public Welt(String mode) {
         hintergrundSetzen("hintergrund 2.png");  // Setzen des Hintergrunds
 
         // Initialisierung der Bodenobjekte
@@ -52,19 +54,38 @@ public class Welt {
         gegner = new Enemy[4096];  // Initialisierung des Gegnerarrays
         gegnerCount = 0;  // Startanzahl der Gegner
 
-        spielfigur = new Traveler(this);  // Initialisierung der Spielfigur
-        HealthBar = new Lebensanzeige(this);  // Initialisierung der Lebensanzeige
+        spielfigur = new Traveler[2];
+        spielfigur[0] = new Player1(this);  // Initialisierung der Spielfigur
+        spielfigur[1] = new Player2(this);
+        
+        HealthBar = new Lebensanzeige[2];
+        HealthBar[0] = new Lebensanzeige(this, spielfigur[0]);  // Initialisierung der Lebensanzeige
+        HealthBar[1] = new Lebensanzeige(this, spielfigur[1]);  // Initialisierung der Lebensanzeige
 
         // Initialisierung der Textobjekte für Score und Game Over
-        text = new TEXT(-20, 10, 2, "Score: " + spielfigur.score);
+        text = new TEXT(-20, 10, 2, "Score: " + spielfigur[0].score);
+        
+        if(mode == "Versus")
+            text.setzeSichtbar(false);
+        
         text1 = new TEXT(0, 0, 4, "GAME OVER");
         text1.setzeSichtbar(false);  // Game Over Text unsichtbar machen
 
         generator = new Random();  // Initialisierung des Zufallsgenerators
+        
+        worldTicker = new WorldTicker(this);
+        
+        this.mode = mode;
+        
+        if(this.mode == "Single"){
+            spielfigur[1].setzePosition(0, -100);
+        }
     }
 
     // Methode zum Spawnen von Gegnern
     public void spawngegner() {
+        if(spielfigur[0].gameOver || spielfigur[1].gameOver)
+            return;
         random = generator.nextInt(4) + 3;  // Zufallszahl für die Anzahl der Gegner
         for (int i = 0; i < random; i++) {
             // Erzeugen neuer Gegner mit zufälligen Koordinaten

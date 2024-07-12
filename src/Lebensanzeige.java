@@ -16,9 +16,10 @@ Autoren: Lasse Wiedemann, Marinus Urch, Tilo Engelbrecht, Natasha Erhart Schlabi
 // Öffentliche Klasse Lebensanzeige
 public class Lebensanzeige extends FIGUR implements Ticker {
     Welt welt;  // Die Welt, zu der die Lebensanzeige gehört
+    Traveler playerToTrack;
 
     // Konstruktor für die Lebensanzeige
-    Lebensanzeige(Welt weltneu) {
+    Lebensanzeige(Welt weltneu, Traveler spieler) {
         super("idle", "health3.gif");  // Initialisierung im Zustand "idle" mit entsprechendem Bild
         
         super.setzeMittelpunkt(0, 0);  // Setzen des Mittelpunkts
@@ -43,15 +44,17 @@ public class Lebensanzeige extends FIGUR implements Ticker {
         
         skaliere(1.5);  // Skalieren der Lebensanzeige
         setzeEbene(1);  // Setzen der Ebene auf 1 (über anderen Elementen)
+        
+        playerToTrack = spieler;
     }
     
     // Überschriebene Methode tick für die Lebensanzeige
     @Override
     public void tick() {
         // Position der Lebensanzeige relativ zur Spielfigur setzen
-        this.setzePosition(welt.spielfigur.nennePosition().getX() - .2, welt.spielfigur.nennePosition().getY() + 3.5);
+        this.setzePosition(playerToTrack.nennePosition().getX() - .2, playerToTrack.nennePosition().getY() + 3.5);
         
-        int TravelerHealth = welt.spielfigur.getHealth();  // Gesundheitszustand der Spielfigur abrufen
+        int TravelerHealth = playerToTrack.getHealth();  // Gesundheitszustand der Spielfigur abrufen
         
         // Entsprechend dem Gesundheitszustand der Spielfigur den passenden Zustand setzen
         if (TravelerHealth >= 3) {

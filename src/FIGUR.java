@@ -12,6 +12,7 @@ Autoren: Lasse Wiedemann, Marinus Urch, Tilo Engelbrecht, Natasha Erhart Schlabi
 */  
     
 import ea.edu.*;
+import ea.actor.Actor;
 import ea.actor.StatefulAnimation;
 import ea.Vector;
 
@@ -247,7 +248,7 @@ extends Figur
      * 
      * @param   X  Der X Anteil dieser Verschiebung. Positive Werte setzen rechts, negative links.
      * 
-     * @param   Y  Der Y Anteil dieser Verschiebung. Positive Werte setzen nach unten, negative nach oben.
+     * @param   Y  Der Y Anteil dieser Verschiebung. Positive Werte setzen nach unten, negative nach oben.  
      */
     public void setzePosition(double X, double Y){
         //double calculatedX = 0, calculatedY = 0;
@@ -255,6 +256,10 @@ extends Figur
         //calculatedY = -(this.M_y) + Y;
         //verschiebenUm(calculatedX, calculatedY);
         this.getActor().setPosition((float)X, (float)Y);
+    }   
+    
+    public Actor nenneActor(){
+        return this.getActor();
     }
     
     /**
