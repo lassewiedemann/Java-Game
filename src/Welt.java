@@ -78,7 +78,9 @@ public class Welt {
         this.mode = mode;
         
         if(this.mode == "Single"){
-            spielfigur[1].setzePosition(0, -100);
+            //spielfigur[1].setzePosition(0, -100);
+            spielfigur[1].entfernen();
+            HealthBar[1].entfernen();
         }
     }
 

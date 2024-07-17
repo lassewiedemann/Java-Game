@@ -130,14 +130,19 @@ public abstract class Traveler extends FIGUR implements TastenReagierbar, Ticker
             double range = Math.sqrt(a2b2);
 
             if (range <= 5 && welt.gegner[i].beinhaltetPunkt(x, y)) {
-                welt.gegner[i].setzeSichtbar(false);
-                welt.gegner[i].verschiebenUm(0, -1000);
-                score++;
-                welt.text.setzeInhalt("Score: " + score);
+                killEnemy(welt.gegner[i]);
             }
         }
     }
 
+    public void killEnemy(Enemy enemy){
+            //enemy.setzeSichtbar(false);
+            //enemy.verschiebenUm(0, -1000);
+            enemy.entfernen();
+            score++;
+            welt.text.setzeInhalt("Score: " + (welt.spielfigur[0].score + welt.spielfigur[1].score));
+    }
+    
     // Tick-Methode für Bewegung und Verhalten der Figur
     @Override
     public void tick() {

@@ -1,6 +1,7 @@
 public class Player2 extends Traveler
 {
     private int lastPressedMovementKey;
+    private Waffe messer;
     
     public Player2(Welt weltneu)
     {
@@ -66,11 +67,12 @@ public class Player2 extends Traveler
         
         if(code == TASTE.RECHTS2)
             lastPressedMovementKey = TASTE.RECHTS2;
-        else
+        else if(code == TASTE.LINKS2)
             lastPressedMovementKey = TASTE.LINKS2;
             
         if(code == TASTE.ENTER){
-        
+            messer = null;
+            messer = new Waffe(welt, (lastPressedMovementKey == TASTE.RECHTS2 ? "right" : "left"));
         }
     }
     

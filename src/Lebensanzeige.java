@@ -23,7 +23,7 @@ public class Lebensanzeige extends FIGUR implements Ticker {
         super("idle", "health3.gif");  // Initialisierung im Zustand "idle" mit entsprechendem Bild
         
         super.setzeMittelpunkt(0, 0);  // Setzen des Mittelpunkts
-        super.machePassiv();  // Die Lebensanzeige ist passiv (nicht aktiv steuerbar)
+        super.macheNeutral();  // Die Lebensanzeige ist passiv (nicht aktiv steuerbar)
         
         // Hinzufügen der Zustände für verschiedene Lebensstände und Setzen der Animationsgeschwindigkeit
         super.fuegeZustandVonGifHinzu("3_Leben", "health3.gif");
