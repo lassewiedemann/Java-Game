@@ -69,10 +69,17 @@ public class Player2 extends Traveler
             lastPressedMovementKey = TASTE.RECHTS2;
         else if(code == TASTE.LINKS2)
             lastPressedMovementKey = TASTE.LINKS2;
+        else if(code == TASTE.RAUF2)
+            lastPressedMovementKey = TASTE.RAUF2;
+        else if(code == TASTE.RUNTER2)
+            lastPressedMovementKey = TASTE.RUNTER2;
             
         if(code == TASTE.ENTER){
             messer = null;
-            messer = new Waffe(welt, (lastPressedMovementKey == TASTE.RECHTS2 ? "right" : "left"));
+            if(lastPressedMovementKey == TASTE.RECHTS2 || lastPressedMovementKey == TASTE.LINKS2)
+                messer = new Waffe(welt, (lastPressedMovementKey == TASTE.RECHTS2 ? "right" : "left"));
+            else if(lastPressedMovementKey == TASTE.RAUF2 || lastPressedMovementKey == TASTE.RUNTER2)
+                messer = new Waffe(welt, (lastPressedMovementKey == TASTE.RAUF2 ? "up" : "down"));
         }
     }
     

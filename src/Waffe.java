@@ -30,17 +30,27 @@ public class Waffe extends FIGUR implements Ticker {
         skaliere(1);
         starteTickerNeu(0.04);
 
-        setzePosition(welt.spielfigur[1].nenneMittelpunktX() + (direction == "right" ? 1 : -1.5), welt.spielfigur[1].nenneActor().getCenter().getY());
-        
-        if(direction != "right")
+        if(direction == "right" || direction == "left")
+            setzeMittelpunkt(welt.spielfigur[1].nenneMittelpunktX() + (direction == "right" ? 1 : -1.5), welt.spielfigur[1].nenneActor().getCenter().getY());
+        else if(direction == "up" || direction == "down")            
+            setzeMittelpunkt((float)welt.spielfigur[1].nenneMittelpunktX(), (float)(welt.spielfigur[1].nenneMittelpunktY() + (direction == "up" ? 1.5 : -1.5)));
+            
+        if(direction == "left")
             spiegelnHorizontal(true);
-        
+        else if(direction == "up")
+            drehenUm(90);
+        else if(direction == "down")
+            drehenUm(-90);
+            
         ticksExisted = 0;
     }
 
     @Override
     public void tick() {
-        verschiebenUm((direction == "right" ? v_runR : v_runL), 0);
+        if(direction == "right" || direction == "left")
+            verschiebenUm((direction == "right" ? v_runR : v_runL), 0);
+        else if(direction == "up" || direction == "down")
+            verschiebenUm(0, (direction == "up" ? .2 : -.2));
         ticksExisted++;
         if(ticksExisted == 75)
             this.entfernen();
