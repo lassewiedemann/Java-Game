@@ -166,6 +166,9 @@ public class Enemy extends FIGUR implements TastenReagierbar, Ticker {
             double distance = Math.sqrt(a2b2);
             distances[i] = distance;
         }
+        if(welt.mode == "Single"){
+            return distances[0];
+        }
         return (distances[0] < distances[1]) ? distances[0] : distances[1];
     }
     
@@ -181,6 +184,9 @@ public class Enemy extends FIGUR implements TastenReagierbar, Ticker {
             double a2b2 = Math.pow(sumAbstandX, 2) + Math.pow(sumAbstandY, 2);
             double distance = Math.sqrt(a2b2);
             distances[i] = distance;
+        }
+        if(welt.mode == "Single"){
+            return welt.spielfigur[0].nenneActor().getCenter();
         }
         return (distances[0] < distances[1]) ? welt.spielfigur[0].nenneActor().getCenter() : welt.spielfigur[1].nenneActor().getCenter();
     }
