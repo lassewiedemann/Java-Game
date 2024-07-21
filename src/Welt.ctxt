@@ -1,7 +1,7 @@
 #BlueJ class context
 comment0.target=Welt
-comment1.params=mode
-comment1.target=Welt(java.lang.String)
+comment1.params=mode\ meinSpiel
+comment1.target=Welt(java.lang.String,\ meinSpiel)
 comment2.params=
 comment2.target=void\ spawngegner()
 comment3.params=min\ max

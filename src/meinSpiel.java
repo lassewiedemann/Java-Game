@@ -1,33 +1,22 @@
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import java.awt.Dimension;
-import java.awt.Toolkit;
-import java.awt.FlowLayout;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JLabel;
 
-/**
-                         _                        _            
-  /\  /\__ _ _   _ _ __ | |_    /\  /\_   _ _ __ | |_ ___ _ __ 
- / /_/ / _` | | | | '_ \| __|  / /_/ / | | | '_ \| __/ _ \ '__|
-/ __  / (_| | |_| | | | | |_  / __  /| |_| | | | | ||  __/ |   
-\/ /_/ \__,_|\__,_|_| |_|\__| \/ /_/  \__,_|_| |_|\__\___|_|   
-                                                                     
-Datei: meinSpiel
-Fertigstellungsdatum: 23. Juni 2024
-Autoren: Lasse Wiedemann, Marinus Urch, Tilo Engelbrecht, Natasha Erhart Schlabitz, Judith Krumme
-                                                    
-*/
-class meinSpiel extends SPIEL
-{
+class meinSpiel extends SPIEL {
     public Welt spielwelt;
-    meinSpiel()
-    {
-        super(1456,816,true);
+    private JLabel scoreLabel;
+    private meinSpiel meinSpiel;
+    public ScoreManager scoreManager;
+
+    meinSpiel() {
+        super(1456, 816, true);
+
+        meinSpiel = this;
         
-        JFrame frame = new JFrame("Spielmodus aussuchen");
+        scoreManager = new ScoreManager();
+        
+        JFrame frame = new JFrame("Choose Gamemode");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(300, 200);
 
@@ -39,22 +28,23 @@ class meinSpiel extends SPIEL
         JButton button3 = new JButton("Versus");
         JButton button4 = new JButton("Tutorial");
 
-        JLabel tutorial = new JLabel("<html>Player 1:<br>Du kannst dich mit WASD bewegen<br>Klicke Gegner mit der Maus an um sie zu töten.<br>Dieser Angriff hat eine kleinere Reichweite<br><br>Player 2:<br>Du kannst dich mit den Pfeiltasten bewegen<br>Mit ENTER wirfst du Messer in die letzte Richtung in diee du dich bewegt hast.<br>Der Angriff geht sehr weit, ist aber schwer richtig einzusetzen.<br><br>Spielmodi:<br>Single - Versuche einen möglichst hohen Score zu erreichen bevor deine Leben ausgehen<br>Coop - Versuche mit einem 2. Spieler einen möglichst hohen Score zu erreichen, bevor euch die Leben ausgehen<br>Versus - Versuche länger als der andere Spieler zu überleben</html>");
+        JLabel tutorial = new JLabel("<html>Player 1:<br>Du kannst dich mit WASD bewegen<br>Klicke Gegner mit der Maus an um sie zu töten.<br>Dieser Angriff hat eine kleinere Reichweite<br>Player 2:<br>Du kannst dich mit den Pfeiltasten bewegen<br>Mit ENTER wirfst du Messer in die letzte Richtung in diee du dich bewegt hast.<br>Der Angriff geht sehr weit, ist aber schwer richtig einzusetzen.</html>");
         tutorial.setVisible(false);
+
+        scoreLabel = new JLabel("High Score: Loading...");
+        updateScoreLabel();
 
         centerFrame(frame);
 
         button1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                spielwelt = new Welt("Single");
+                spielwelt = new Welt("Single", meinSpiel);
                 frame.dispose();
                 try {
                     Thread.sleep(150);
                     setzeKamerafokus(spielwelt.hintergrund);
-                }
-                catch(Exception exception){
-            
+                } catch (Exception exception) {
                 }
                 setzeErkundungsmodusAktiv(false);
                 zeigeKoordinatensystem(false);
@@ -64,46 +54,40 @@ class meinSpiel extends SPIEL
         button2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                spielwelt = new Welt("Coop");
+                spielwelt = new Welt("Coop", meinSpiel);
                 frame.dispose();
                 try {
                     Thread.sleep(150);
                     setzeKamerafokus(spielwelt.hintergrund);
-                }
-                catch(Exception exception){
-            
+                } catch (Exception exception) {
                 }
                 setzeErkundungsmodusAktiv(false);
                 zeigeKoordinatensystem(false);
             }
         });
-        
+
         button3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                spielwelt = new Welt("Versus");
+                spielwelt = new Welt("Versus", meinSpiel);
                 frame.dispose();
                 try {
                     Thread.sleep(150);
                     setzeKamerafokus(spielwelt.hintergrund);
-                }
-                catch(Exception exception){
-            
+                } catch (Exception exception) {
                 }
                 setzeErkundungsmodusAktiv(false);
                 zeigeKoordinatensystem(false);
             }
         });
-        
+
         button4.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 tutorial.setVisible(true);
-                panel.remove(button4);
-                frame.setSize(new Dimension(850, 350));
+                frame.setSize(new Dimension(500, 300)); // Increase the size to fit the tutorial
                 frame.revalidate();
                 frame.repaint();
-                centerFrame(frame);
             }
         });
 
@@ -112,13 +96,22 @@ class meinSpiel extends SPIEL
         panel.add(button3);
         panel.add(button4);
         panel.add(tutorial);
+        panel.add(scoreLabel);
 
         frame.add(panel);
 
         frame.setVisible(true);
-        
     }
-    
+
+    private void updateScoreLabel() {
+        int score = ScoreManager.getScore();
+        if (score == Integer.MIN_VALUE) {
+            scoreLabel.setText("High Score: Not available");
+        } else {
+            scoreLabel.setText("High Score: " + score);
+        }
+    }
+
     private static void centerFrame(JFrame frame) {
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         int w = frame.getSize().width;

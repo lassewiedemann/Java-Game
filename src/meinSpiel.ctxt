@@ -1,6 +1,5 @@
 #BlueJ class context
 comment0.target=meinSpiel
-comment0.text=\r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ _\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ _\ \ \ \ \ \ \ \ \ \ \ \ \r\n\ \ /\\\ \ /\\__\ _\ _\ \ \ _\ _\ __\ |\ |_\ \ \ \ /\\\ \ /\\_\ \ \ _\ _\ __\ |\ |_\ ___\ _\ __\ \r\n\ /\ /_/\ /\ _`\ |\ |\ |\ |\ '_\ \\|\ __|\ \ /\ /_/\ /\ |\ |\ |\ '_\ \\|\ __/\ _\ \\\ '__|\r\n/\ __\ \ /\ (_|\ |\ |_|\ |\ |\ |\ |\ |_\ \ /\ __\ \ /|\ |_|\ |\ |\ |\ |\ ||\ \ __/\ |\ \ \ \r\n\\/\ /_/\ \\__,_|\\__,_|_|\ |_|\\__|\ \\/\ /_/\ \ \\__,_|_|\ |_|\\__\\___|_|\ \ \ \r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \r\nDatei\:\ meinSpiel\r\nFertigstellungsdatum\:\ 23.\ Juni\ 2024\r\nAutoren\:\ Lasse\ Wiedemann,\ Marinus\ Urch,\ Tilo\ Engelbrecht,\ Natasha\ Erhart\ Schlabitz,\ Judith\ Krumme\r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \r\n
 comment1.params=
 comment1.target=meinSpiel()
 comment2.params=e
@@ -11,6 +10,8 @@ comment4.params=e
 comment4.target=void\ actionPerformed(java.awt.event.ActionEvent)
 comment5.params=e
 comment5.target=void\ actionPerformed(java.awt.event.ActionEvent)
-comment6.params=frame
-comment6.target=void\ centerFrame(javax.swing.JFrame)
-numComments=7
+comment6.params=
+comment6.target=void\ updateScoreLabel()
+comment7.params=frame
+comment7.target=void\ centerFrame(javax.swing.JFrame)
+numComments=8

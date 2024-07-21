@@ -31,11 +31,14 @@ public class Welt {
     public int random;  // Zufälliger Wert
     private WorldTicker worldTicker;
     public String mode;
+    public meinSpiel meinSpiel;
 
     // Konstruktor für die Weltklasse
-    public Welt(String mode) {
+    public Welt(String mode, meinSpiel meinSpiel) {
         hintergrundSetzen("hintergrund 2.png");  // Setzen des Hintergrunds
 
+        this.meinSpiel = meinSpiel;
+        
         // Initialisierung der Bodenobjekte
         boeden = new Boden[7];
         boeden[0] = new Boden(16, -16, -13);
@@ -61,6 +64,7 @@ public class Welt {
         HealthBar = new Lebensanzeige[2];
         HealthBar[0] = new Lebensanzeige(this, spielfigur[0]);  // Initialisierung der Lebensanzeige
         HealthBar[1] = new Lebensanzeige(this, spielfigur[1]);  // Initialisierung der Lebensanzeige
+        
 
         // Initialisierung der Textobjekte für Score und Game Over
         text = new TEXT(-20, 10, 2, "Score: " + spielfigur[0].score);

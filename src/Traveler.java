@@ -20,6 +20,7 @@ public abstract class Traveler extends FIGUR implements TastenReagierbar, Ticker
     Welt welt;  // Referenz auf die Spielwelt
     public int score;  // Punktzahl
     public boolean gameOver;  // Spiel vorbei Flagge
+    public int overallScore;
     
     // Konstruktor für Traveler-Klasse
     public Traveler(Welt weltneu) {
@@ -60,6 +61,8 @@ public abstract class Traveler extends FIGUR implements TastenReagierbar, Ticker
         skaliere(.3);  // Skalierung der Figur
 
         gameOver = false;  // Spiel ist nicht vorbei
+        
+        overallScore = 0;
     }
 
     // Reaktion auf losgelassene Tasten
@@ -140,7 +143,11 @@ public abstract class Traveler extends FIGUR implements TastenReagierbar, Ticker
             //enemy.verschiebenUm(0, -1000);
             enemy.entfernen();
             score++;
+            if(welt.mode == "Versus"){
+                return;
+            }
             welt.text.setzeInhalt("Score: " + (welt.spielfigur[0].score + welt.spielfigur[1].score));
+            overallScore = welt.spielfigur[0].score + welt.spielfigur[1].score;
     }
     
     // Tick-Methode für Bewegung und Verhalten der Figur
@@ -149,7 +156,7 @@ public abstract class Traveler extends FIGUR implements TastenReagierbar, Ticker
         //----------------------------------------tick-Methode----------------------------------------//
         if (gameOver)
             return;
-
+        
         if (vX < 0 && M_x <= -24 || vX > 0 && M_x >= 24) {
 
         } else {
@@ -196,6 +203,7 @@ public abstract class Traveler extends FIGUR implements TastenReagierbar, Ticker
             welt.text1.setzeInhalt("Player 1 hat gewonnen");
             welt.text1.verschiebenUm(-7, 0);
         }
+        welt.meinSpiel.scoreManager.saveScore(overallScore);
     }
 
     // Methode zum Abrufen der Lebenspunkte
